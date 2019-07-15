@@ -10,7 +10,7 @@ import java.util.List;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity(name="event")
-@DiscriminatorColumn(name="event_type",
+@DiscriminatorColumn(name="typeOfEvent",
         discriminatorType = DiscriminatorType.STRING)
 public class Event {
 
@@ -27,16 +27,13 @@ public class Event {
     @NotBlank
     private String place;
 
-    @NotBlank
-    private String typeOfEvent;
-
     @Column(name="howManyGuests")
     private Integer howManyGuests;
 
-    @OneToOne
+    @ManyToOne
     private Organizer organizer;
 
-    @ManyToOne
+    @ManyToMany
     private List<Participant> participantList;
 
     private String description;
@@ -82,13 +79,6 @@ public class Event {
         this.place = place;
     }
 
-    public String getTypeOfEvent() {
-        return typeOfEvent;
-    }
-
-    public void setTypeOfEvent(String typeOfEvent) {
-        this.typeOfEvent = typeOfEvent;
-    }
 
     public Integer getHowManyGuests() {
         return howManyGuests;
