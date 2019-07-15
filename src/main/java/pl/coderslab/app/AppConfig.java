@@ -29,7 +29,7 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean emfb = new LocalEntityManagerFactoryBean();
-        emfb.setPersistenceUnitName("workshopPersistenceUnit");
+        emfb.setPersistenceUnitName("dosomethingPersistenceUnit");
         return emfb; }
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
