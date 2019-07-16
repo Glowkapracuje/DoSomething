@@ -12,10 +12,8 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue("dance")
 public class Dance extends Event {
 
-    @NotBlank
     private String typeOfDance;
 
-    @NotBlank
     private String typeOfDress;
 
     public String getTypeOfDance() {

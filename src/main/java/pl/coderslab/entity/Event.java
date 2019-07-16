@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity(name="event")
-@DiscriminatorColumn(name="typeOfEvent",
+@DiscriminatorColumn(name="type",
         discriminatorType = DiscriminatorType.STRING)
 public class Event {
 
@@ -21,7 +22,8 @@ public class Event {
     @NotBlank
     private String name;
 
-    @NotNull
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     @NotBlank
@@ -38,6 +40,16 @@ public class Event {
 
     private String description;
 
+    @NotBlank
+    private String typeOfEvent;
+
+    public String getTypeOfEvent() {
+        return typeOfEvent;
+    }
+
+    public void setTypeOfEvent(String typeOfEvent) {
+        this.typeOfEvent = typeOfEvent;
+    }
 
     public String getDescription() {
         return description;

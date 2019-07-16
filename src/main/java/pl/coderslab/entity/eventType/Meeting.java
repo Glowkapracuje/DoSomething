@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 public class Meeting extends Event {
 
 
-    @NotBlank
     private String topic;
 
     public String getTopic() {

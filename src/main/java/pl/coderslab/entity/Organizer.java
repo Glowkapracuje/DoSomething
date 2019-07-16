@@ -29,8 +29,19 @@ public class Organizer {
     @Column(unique = true)
     private String email;
 
+    @NotBlank
+    private String password;
+
     @OneToMany(mappedBy = "organizer")
     private List<Event> eventList;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

@@ -14,10 +14,8 @@ public class Trip extends Event {
 
 
 
-    @NotNull
     private String fromWhere;
 
-    @NotNull
     private String toWhere;
 
     @Column(name="eq_description")

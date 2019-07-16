@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 public class Concert extends Event {
 
 
-    @NotBlank
     private String band;
 
     public String getBand() {
