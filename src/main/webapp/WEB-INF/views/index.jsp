@@ -22,7 +22,7 @@
         </h2>
     </c:when>
     <c:otherwise>
-        <button onclick="">Wyloguj sie.</button>
+        <button onclick="javascript:document.location.href='/logout'">Wyloguj sie.</button>
     </c:otherwise>
 </c:choose>
 </body>

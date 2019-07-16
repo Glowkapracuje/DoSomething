@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ParticipantRepository extends JpaRepository<Participant, Long> {
 
-
+    Participant getByEmail(String email);
 }
 
 

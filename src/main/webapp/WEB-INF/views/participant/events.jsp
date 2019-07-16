@@ -19,7 +19,6 @@
     Nazwa: <c:out value="${event.name}"/><br>
     Data: <c:out value="${event.date}"/><br>
     Miejsce: <c:out value="${event.place}"/><br>
-
     <c:if test="${event.typeOfEvent=='concert'}">
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
             Szczegoly
@@ -29,8 +28,13 @@
                 Zespol: <c:out value="${event.band}"/><br>
                 Opis: <c:out value="${event.description}"/><br>
                 Organizator: <c:out value="${event.organizer.name}"/>
+
+                <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${event.place}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.bitgeeks.net/embed-google-map/">how can i see embed on google map</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+                </div>
+            </div>
             </div>
         </div>
+        <button onclick="javascript:document.location.href='/participants/join'">Dolacz do wydarzenia</button>
     </c:if>
     <c:if test="${event.typeOfEvent=='dance'}">
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -43,9 +47,12 @@
                 Ubior: <c:out value="${event.typeOfDress}"/><br>
                 Opis: <c:out value="${event.description}"/><br>
                 Organizator: <c:out value="${event.organizer.name}"/>
+
+                <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${event.place}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.bitgeeks.net/embed-google-map/">how can i see embed on google map</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
             </div>
         </div>
 
+        <button onclick="javascript:document.location.href='/participants/join'">Dolacz do wydarzenia</button>
     </c:if>
     <c:if test="${event.typeOfEvent=='meeting'}">
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -56,9 +63,12 @@
                 Temat: <c:out value="${event.topic}"/><br>
                 Opis: <c:out value="${event.description}"/><br>
                 Organizator: <c:out value="${event.organizer.name}"/>
+
+                <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${event.place}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.bitgeeks.net/embed-google-map/">how can i see embed on google map</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+            </div>
             </div>
         </div>
-
+        <button onclick="javascript:document.location.href='/participants/join'">Dolacz do wydarzenia</button>
     </c:if>
     <c:if test="${event.typeOfEvent=='trip'}">
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -71,9 +81,12 @@
                 Opis: <c:out value="${event.description}"/><br>
                 Opis wyposazenia: <c:out value="${event.equipmentDescription}"/><br>
                 Organizator: <c:out value="${event.organizer.name}"/>
+
+                <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${event.place}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.bitgeeks.net/embed-google-map/">how can i see embed on google map</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+            </div>
             </div>
         </div>
-
+        <button onclick="javascript:document.location.href='/participants/join'">Dolacz do wydarzenia</button>
     </c:if>
     <br><br>
 </c:forEach>

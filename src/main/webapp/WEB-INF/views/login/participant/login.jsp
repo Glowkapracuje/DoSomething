@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kacper
@@ -8,9 +9,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+        <title>title</title>
 </head>
 <body>
+
+<h2>Login</h2>
+<c:if test="${success == false}">
+    <p>Login failed. Email or password is incorrect.</p>
+</c:if>
+<form action="/login/participant/login" method="post">
+    Email: <input type="email" name="email" required/><br>
+    Password: <input type="password" name="password" required/>
+    <input type="submit" value="Login"/>
+</form>
 
 </body>
 </html>

@@ -4,10 +4,9 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.Event;
+import pl.coderslab.entity.Participant;
 import pl.coderslab.repository.EventRepository;
 import pl.coderslab.repository.ParticipantRepository;
 
@@ -28,17 +27,18 @@ public class ParticipantController {
         return "/participant/events";
     }
 
+    @GetMapping("/join")
+    @ResponseBody
+    public String joinToEvent() {
+      //  Event event = eventRepository.getOne(id);
+        return "Elo";
+    }
 
 
 //    @GetMapping("/yourEvents")
 //    public String showYourEvents() {
 //        List<Event> events = participantRepository.
 //        return "/participant/yourEvents";
-//    }
-
-//    @PostMapping("/join")
-//    public String joinToEvent() {
-//        return
 //    }
 
 
