@@ -28,8 +28,7 @@
     <form:errors path="topic"/>
     <%--        Organizator: <form:input path="organizer.name"/>--%>
     <%--        <form:errors path="organizer.name"/>--%>
-    Spotkanie: <form:input path="typeOfEvent"/>
-    <form:errors path="typeOfEvent"/>
+    <input name="typeOfEvent" type="hidden" value="meeting"/>
     <input type="submit">
 </form:form>
 </body>

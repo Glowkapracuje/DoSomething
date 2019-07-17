@@ -30,8 +30,7 @@
     <form:errors path="typeOfDress"/>
     <%--        Organizator: <form:input path="organizer.name"/>--%>
     <%--        <form:errors path="organizer.name"/>--%>
-    Potancowka: <form:input path="typeOfEvent"/>
-    <form:errors path="typeOfEvent"/>
+    <input name="typeOfEvent" type="hidden" value="dance"/>
     <input type="submit">
 </form:form>
 </body>

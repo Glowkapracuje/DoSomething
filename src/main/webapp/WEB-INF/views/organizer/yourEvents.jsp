@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kacper
@@ -11,6 +12,11 @@
     <title>Title</title>
 </head>
 <body>
-    ELO
+    <c:forEach items="${events}" var="event">
+        <c:out value="${event.name}"/><br>
+        <c:out value="${event.date}"/><br>
+        <c:out value="${event.description}"/><br>
+        <br>
+    </c:forEach>
 </body>
 </html>

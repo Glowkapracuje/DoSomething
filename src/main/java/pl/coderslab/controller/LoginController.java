@@ -92,6 +92,7 @@ public class LoginController {
 
         session.setAttribute("email", email);
         session.setAttribute("name", existingOrganizer.getName());
+        session.setAttribute("id", existingOrganizer.getId());
 
         return "redirect:/";
     }

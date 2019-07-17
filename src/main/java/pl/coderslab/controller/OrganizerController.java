@@ -8,12 +8,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.entity.Organizer;
 import pl.coderslab.entity.eventType.Concert;
 import pl.coderslab.entity.eventType.Dance;
 import pl.coderslab.entity.eventType.Meeting;
 import pl.coderslab.entity.eventType.Trip;
 import pl.coderslab.repository.EventRepository;
+import pl.coderslab.repository.OrganizerRepository;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -23,12 +26,17 @@ public class OrganizerController {
 
     @Autowired
     EventRepository eventRepository;
+    @Autowired
+    OrganizerRepository organizerRepository;
 
     @GetMapping("/chooseType")
     public String addEvent() {
         return "/organizer/type";
     }
+
+
 //////////////////////////////////
+////---------------------////////
     @GetMapping("/concertForm")
     public String makeConcert(Model model) {
         Concert concert = new Concert();
@@ -38,13 +46,16 @@ public class OrganizerController {
     }
 
     @PostMapping("/concertForm")
-    public String postMakeConcert(@Valid Concert concert, BindingResult result) {
+    public String postMakeConcert(@Valid Concert concert, BindingResult result, HttpSession session) {
 
         if(result.hasErrors()) {
             return "/organizer/concertForm";
         }
+        Long id = (Long) session.getAttribute("id");
+        Organizer organizer = organizerRepository.findOne(id);
+        concert.setOrganizer(organizer);
         eventRepository.save(concert);
-        return "/organizer/yourEvents";
+        return "redirect:yourEvents";
     }
 //////////////////////////////////
     @GetMapping("/danceForm")
@@ -56,13 +67,16 @@ public class OrganizerController {
     }
 
     @PostMapping("/danceForm")
-    public String postMakeDancing(@Valid Dance dance, BindingResult result) {
+    public String postMakeDancing(@Valid Dance dance, BindingResult result, HttpSession session) {
 
         if(result.hasErrors()) {
             return "/organizer/danceForm";
         }
+        Long id = (Long) session.getAttribute("id");
+        Organizer organizer = organizerRepository.findOne(id);
+        dance.setOrganizer(organizer);
         eventRepository.save(dance);
-        return "/organizer/yourEvents";
+        return "redirect:yourEvents";
     }
 ///////////////////////////
     @GetMapping("/meetingForm")
@@ -74,13 +88,16 @@ public class OrganizerController {
     }
 
     @PostMapping("/meetingForm")
-    public String postMakeMeeting(@Valid Meeting meeting, BindingResult result) {
+    public String postMakeMeeting(@Valid Meeting meeting, BindingResult result, HttpSession session) {
 
         if(result.hasErrors()) {
             return "/organizer/meetingForm";
         }
+        Long id = (Long) session.getAttribute("id");
+        Organizer organizer = organizerRepository.findOne(id);
+        meeting.setOrganizer(organizer);
         eventRepository.save(meeting);
-        return "/organizer/yourEvents";
+        return "redirect:yourEvents";
     }
 ///////////////////////////////////
     @GetMapping("/tripForm")
@@ -92,20 +109,28 @@ public class OrganizerController {
     }
 
     @PostMapping("/tripForm")
-    public String postMakeTrip(@Valid Trip trip, BindingResult result) {
+    public String postMakeTrip(@Valid Trip trip, BindingResult result, HttpSession session) {
 
         if(result.hasErrors()) {
             return "/organizer/tripForm";
         }
+
+        Long id = (Long) session.getAttribute("id");
+        Organizer organizer = organizerRepository.findOne(id);
+        trip.setOrganizer(organizer);
         eventRepository.save(trip);
-        return "/organizer/yourEvents";
+        return "redirect:yourEvents";
     }
 //////////////////////////////////////////
-//??????????????????
+//---------------------------------//////
+
     @GetMapping("/yourEvents")
-    public String showTabOfEvents(Model model) {
-        model.addAttribute("events", eventRepository.findAll());
-        return "/participant/events";
+    public String showTabOfEvents(Model model,HttpSession session) {
+
+        Long id = (Long) session.getAttribute("id");
+        model.addAttribute("events", eventRepository.findByOrganizerId(id));
+
+        return "/organizer/yourEvents";
     }
 
 
