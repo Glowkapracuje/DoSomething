@@ -10,6 +10,7 @@ import pl.coderslab.entity.Participant;
 import pl.coderslab.repository.EventRepository;
 import pl.coderslab.repository.ParticipantRepository;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -27,11 +28,17 @@ public class ParticipantController {
         return "/participant/events";
     }
 
-    @GetMapping("/join")
+    @GetMapping("/join/{id}")
     @ResponseBody
-    public String joinToEvent() {
-      //  Event event = eventRepository.getOne(id);
-        return "Elo";
+    public String joinToEvent(@PathVariable Long id,
+                              HttpSession session) {
+
+        Long participantId = (Long) session.getAttribute("id");
+        System.out.println(participantId);
+        return "elo";
+//        Event event = eventRepository.getOne(id);
+//        event.getParticipantList().add();
+
     }
 
 

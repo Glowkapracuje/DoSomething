@@ -33,7 +33,7 @@
                 </div>
             </div>
             </div>
-        </div>
+
         <button onclick="javascript:document.location.href='/participants/join'">Dolacz do wydarzenia</button>
     </c:if>
     <c:if test="${event.typeOfEvent=='dance'}">
@@ -67,7 +67,7 @@
                 <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${event.place}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.bitgeeks.net/embed-google-map/">how can i see embed on google map</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
             </div>
             </div>
-        </div>
+
         <button onclick="javascript:document.location.href='/participants/join'">Dolacz do wydarzenia</button>
     </c:if>
     <c:if test="${event.typeOfEvent=='trip'}">
@@ -85,8 +85,8 @@
                 <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${event.place}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.bitgeeks.net/embed-google-map/">how can i see embed on google map</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
             </div>
             </div>
-        </div>
-        <button onclick="javascript:document.location.href='/participants/join'">Dolacz do wydarzenia</button>
+
+        <button onclick="javascript:document.location.href='/participants/join/${event.id}'">Dolacz do wydarzenia</button>
     </c:if>
     <br><br>
 </c:forEach>
