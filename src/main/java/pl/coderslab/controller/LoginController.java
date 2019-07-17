@@ -162,6 +162,7 @@ public class LoginController {
 
         session.setAttribute("email", email);
         session.setAttribute("firstName", existingParticipant.getFirstName());
+        session.setAttribute("id", existingParticipant.getId());
 
         return "redirect:/participants/events";
     }

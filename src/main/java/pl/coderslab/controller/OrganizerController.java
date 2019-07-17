@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.entity.Event;
 import pl.coderslab.entity.Organizer;
 import pl.coderslab.entity.eventType.Concert;
 import pl.coderslab.entity.eventType.Dance;
@@ -57,6 +59,67 @@ public class OrganizerController {
         eventRepository.save(concert);
         return "redirect:yourEvents";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editConcert(@PathVariable Long id, Model model) {
+
+        Event event = eventRepository.findOne(id);
+
+        if(event.getTypeOfEvent().equals("concert")){
+            Concert concert = eventRepository.findOne(id);
+            model.addAttribute("concert", concert);
+            return "/organizer/concertForm";
+
+        } else if(event.getTypeOfEvent().equals("dance")){
+            Dance dance = (Dance) eventRepository.findOne(id);
+            model.addAttribute("dance", dance);
+            return "/organizer/danceForm";
+
+        } else if(event.getTypeOfEvent().equals("trip")){
+            Trip trip = (Trip) eventRepository.findOne(id);
+            model.addAttribute("trip", trip);
+            return "/organizer/tripForm";
+
+        } else if(event.getTypeOfEvent().equals("meeting")){
+            Meeting meeting = (Meeting) eventRepository.findOne(id);
+            model.addAttribute("meeting", meeting);
+            return "/organizer/meetingForm";
+        }
+        return "/organizer/concertForm";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String postEditConcert(@Valid Event event, @PathVariable Long id, BindingResult result, HttpSession session) {
+
+        if(result.hasErrors()) {
+            return "/organizer/concertForm";
+        }
+
+        if(event.getTypeOfEvent().equals("concert")) {
+            Long concertId = (Long) session.getAttribute("id");
+            Concert concert = (Concert) event;
+            concert.setOrganizer(organizerRepository.findOne(concertId));
+            eventRepository.save(concert);
+        } else if(event.getTypeOfEvent().equals("dance")) {
+            Long danceId = (Long) session.getAttribute("id");
+            Dance dance = (Dance) event;
+            dance.setOrganizer(organizerRepository.findOne(danceId));
+            eventRepository.save(dance);
+        } else if(event.getTypeOfEvent().equals("meeting")) {
+            Long meetingId = (Long) session.getAttribute("id");
+            Meeting meeting = (Meeting) event;
+            meeting.setOrganizer(organizerRepository.findOne(meetingId));
+            eventRepository.save(meeting);
+        } else if(event.getTypeOfEvent().equals("trip")) {
+            Long tripId = (Long) session.getAttribute("id");
+            Trip trip = (Trip) event;
+            trip.setOrganizer(organizerRepository.findOne(tripId));
+            eventRepository.save(trip);
+        }
+        return "redirect:../yourEvents";
+    }
+
+
 //////////////////////////////////
     @GetMapping("/danceForm")
     public String makeDancing(Model model) {
@@ -78,6 +141,26 @@ public class OrganizerController {
         eventRepository.save(dance);
         return "redirect:yourEvents";
     }
+
+//    @GetMapping("/edit/{id}")
+//    public String editDancing(@PathVariable Long id, Model model) {
+//
+//        Event event = eventRepository.findOne(id);
+//        model.addAttribute("dance", event);
+//        return "/organizer/danceForm";
+//    }
+
+//    @PostMapping("/edit/{id}")
+//    public String postEditDancing(@Valid Dance dance, @PathVariable Long id, BindingResult result, HttpSession session) {
+//
+//        if(result.hasErrors()) {
+//            return "/organizer/danceForm";
+//        }
+//        Long danceId = (Long) session.getAttribute("id");
+//        dance.setOrganizer(organizerRepository.findOne(danceId));
+//        eventRepository.save(dance);
+//        return "redirect:../yourEvents";
+//    }
 ///////////////////////////
     @GetMapping("/meetingForm")
     public String makeMeeting(Model model) {
@@ -99,6 +182,27 @@ public class OrganizerController {
         eventRepository.save(meeting);
         return "redirect:yourEvents";
     }
+//
+//    @GetMapping("/edit/{id}")
+//    public String editMeeting(@PathVariable Long id, Model model) {
+//
+//        Event event = eventRepository.findOne(id);
+//        model.addAttribute("meeting", event);
+//        return "/organizer/meetingForm";
+//    }
+
+//    @PostMapping("/edit/{id}")
+//    public String postEditMeeting(@Valid Meeting meeting, @PathVariable Long id, BindingResult result, HttpSession session) {
+//
+//        if(result.hasErrors()) {
+//            return "/organizer/meetingForm";
+//        }
+//        Long meetingId = (Long) session.getAttribute("id");
+//        meeting.setOrganizer(organizerRepository.findOne(meetingId));
+//        eventRepository.save(meeting);
+//
+//        return "redirect:../yourEvents";
+//    }
 ///////////////////////////////////
     @GetMapping("/tripForm")
     public String makeTrip(Model model) {
@@ -121,6 +225,27 @@ public class OrganizerController {
         eventRepository.save(trip);
         return "redirect:yourEvents";
     }
+//
+//    @GetMapping("/edit/{id}")
+//    public String editTrip(@PathVariable Long id, Model model) {
+//
+//        Event event = eventRepository.findOne(id);
+//        model.addAttribute("trip", event);
+//        return "/organizer/tripForm";
+//    }
+
+//    @PostMapping("/edit/{id}")
+//    public String postEditTrip(@Valid Trip trip, @PathVariable Long id, BindingResult result, HttpSession session) {
+//
+//        if(result.hasErrors()) {
+//            return "/organizer/tripForm";
+//        }
+//        Long tripId = (Long) session.getAttribute("id");
+//        trip.setOrganizer(organizerRepository.findOne(tripId));
+//        eventRepository.save(trip);
+//
+//        return "redirect:../yourEvents";
+//    }
 //////////////////////////////////////////
 //---------------------------------//////
 
@@ -132,6 +257,7 @@ public class OrganizerController {
 
         return "/organizer/yourEvents";
     }
+
 
 
 

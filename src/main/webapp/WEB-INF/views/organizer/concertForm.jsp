@@ -31,6 +31,7 @@
 <%--        Organizator: <form:input path="organizer.name"/>--%>
 <%--        <form:errors path="organizer.name"/>--%>
         <input name="typeOfEvent" type="hidden" value="concert"/>
+        <input type="hidden" name="concert" value="concert"/>
         <input type="submit">
     </form:form>
 </body>

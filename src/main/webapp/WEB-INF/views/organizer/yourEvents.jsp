@@ -16,6 +16,8 @@
         <c:out value="${event.name}"/><br>
         <c:out value="${event.date}"/><br>
         <c:out value="${event.description}"/><br>
+        <button onclick="document.location.href='/organizers/edit/${event.id}'">Edytuj</button>
+        <button onclick="">Usun</button><br>
         <br>
     </c:forEach>
 </body>
